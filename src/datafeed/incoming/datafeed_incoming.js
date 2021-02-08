@@ -1,6 +1,7 @@
 const socketio = require('socket.io');
 
 const auth = require('../../lib/authorize');
+const Datum = require('../Datum');
 
 module.exports = (http) => {
     io = socketio(http);
@@ -16,6 +17,11 @@ module.exports = (http) => {
                     console.log('Reading from', client.user._id);
 
                     // write out to database
+                    const datum = new Datum()
+                    datum.userId = client.user._id;
+                    datum.reading = data.reading;
+
+                    datum.save();
 
                 });
             }
