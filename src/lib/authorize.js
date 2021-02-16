@@ -6,7 +6,6 @@ module.exports = (token) => {
             if(err) {
                 resolve(false);
             }
-            console.log(decoded);
             resolve(decoded);
         });
     })
